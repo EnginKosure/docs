@@ -1,0 +1,654 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
+    
+    
+      
+        <title>Kubernetes - Platform Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="navy" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Platform Documentation" class="md-header__button md-logo" aria-label="Platform Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Platform Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="navy" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Summaries
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Platform Documentation" class="md-nav__button md-logo" aria-label="Platform Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Platform Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Summaries
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Summaries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-object-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes object model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes object model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-principle-of-declarative-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      The principle of Declarative Management:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Control Plane
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-object-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Object Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-object-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes object model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes object model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-principle-of-declarative-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      The principle of Declarative Management:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Control Plane
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-object-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Object Management
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="kubernetes-concepts">Kubernetes Concepts</h1>
+<h2 id="kubernetes-object-model"><strong>Kubernetes object model</strong></h2>
+<p>Each thing Kubernetes manages is represented by an <strong>object</strong>. We can view and change these objects, attributes, and state.</p>
+<h3 id="the-principle-of-declarative-management">The principle of <strong>Declarative Management</strong>:</h3>
+<p>-- tell it what you want the state of the objects, it will bring that state to there, and keep there.</p>
+<p>--watch loop</p>
+<p><strong>Kubernetes objects</strong>:à Persistent entities representing the state of the cluster; its desired state and its current state…</p>
+<p><code></code>Various kinds of objects represent containerized applications, the <strong>resources</strong> that are available to them, and the <strong>policies</strong> that affect their behavior.</p>
+<p><strong>Kubernetes objects</strong> have two important elements. You give Kubernetes an <strong>object spec</strong> for each object you want to create. With this <strong>spec</strong>, you <strong>define the desired state</strong> of the object by providing the characteristics that you want.</p>
+<p>The <strong>object status</strong> is simply the <strong>current state of the object</strong> provided by the Kubernetes control plane. By the way, we use the term Kubernetes control plane to refer to the various system processes that collaborate to make a Kubernetes cluster work.</p>
+<p><img alt="Timeline Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.001.png" /></p>
+<p>Each object is of a certain type or <strong>'Kind'</strong> as Kubernetes calls them.</p>
+<p><strong>Pods</strong> are the basic building block of the standard Kubernetes module, and they are the <strong>smallest deployable Kubernetes object</strong>. You may be surprised to hear me say that. Maybe you're expecting me to say the smallest Kubernetes object is the container. Not so.</p>
+<p><strong>Every running container in a Kubernetes system is a Pod</strong>. A Pod embodies the environment where containers live and that environment can accommodate <strong>one or more containers</strong>.</p>
+<p>If there is more than one container in a Pod, they are tightly coupled and they <strong>share resources</strong> including <strong>networking and storage</strong>. <img alt="Graphical user interface, application Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.002.png" /></p>
+<p><code></code>Kubernetes assigns <strong>each Pod</strong> a <strong>unique IP address</strong>. Every container within a Pod shares the network namespace including IP address and network ports. <strong>Containers within the same Pod can communicate through localhost 127.0.0.1.</strong></p>
+<p>A Pod can also specify a set of storage volumes to be shared amongst it's containers. By the way, later in this specialization, you'll learn how <strong>Pods can share storage with one another</strong> and not just a single Pod.</p>
+<p>Let's consider a simple example, where you want three instances of the nginx web server, each in its own container, running all the time. How is this achieved in Kubernetes? Remember that Kubernetes embodies the principle of declarative management. You declare some objects to represent those nginx containers. What kind of object? Perhaps Pods! Now it is Kubernetes' job to launch those Pods and keep them in existence. But be careful, Pods are not self healing. If we want to keep all our nginx web servers not just in existence but also working together as a team, we might want to ask for them using a more sophisticated kind of object. We'll tell you more about this later in the module. Let's suppose we have given Kubernetes a desired state that consists of three nginx Pods, always kept running. We did this by telling Kubernetes to create and maintain one or more objects that represent them. Kubernetes compares the desired state to its current state.</p>
+<p><img alt="Diagram, timeline Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.003.png" /></p>
+<p>Let's imagine that our declaration of three nginx containers is completely new. The current state does not match the desired state, so Kubernetes, specifically it's control plane, will remedy the situation. Because the number of desired Pods running for the object we declared as three, and zero are presently running, three will be launched. The Kubernetes control plane will continuously monitor the state of the cluster, endlessly comparing reality to what has been declared and remedying state as needed. (remedy—duzeltici onlem, tamir, care bulmak, geregine bakmak, onarmak, iyilestirmek, tedbir getirmek.)</p>
+<h2 id="kubernetes-control-plane"><strong>Kubernetes Control Plane</strong></h2>
+<p>The Kubernetes <strong>control plane</strong>, which is the fleet of cooperating processes that make a kubernetes cluster work.</p>
+<p>Even though you'll only work directly on a few of these components, it helps to know about them and the role each plays.</p>
+<p>I'll build up a kubernetes cluster, part by part, explaining each piece as I go. After I'm done, I'll show you how a Kubernetes cluster running in GKE is a lot less work to manage the one you provision yourself. Okay, here we go.</p>
+<p>First and foremost, your cluster needs computers. Nowadays, there are computers to compose your clusters. Usually our virtual machines. They always are in GKE but they could be physical computers, too. <strong>One computer is</strong> called the <strong>control plane</strong> and <strong>the others are simply called nodes.</strong></p>
+<p>The job of the <strong>nodes</strong> is <strong>to run pods</strong>.</p>
+<p>The job of the <strong>control plane</strong> is <strong>to coordinate the entire cluster</strong>. We'll meet its control plane components first.</p>
+<p>Several critical kubernetes components run under control plane. The single component that you <strong>interact with directly</strong> is called the <strong>kube-APIserver</strong>. This component's <strong>job is to accept commands</strong> that view or change the state of the cluster, including <strong>launching pods</strong>.</p>
+<p>In the specialization, you will use the <strong>kubectl</strong> command frequently. This command's job is <strong>to connect to the kubeAPIserver</strong> and communicate with us using the kubernetes API.</p>
+<p><strong>kubeAPIserver</strong> also <strong>authenticates incoming requests</strong>, determines whether they are authorized and valid, and <strong>manages admission control</strong>. But it's not just the kubectl that talks with kube-APIserver.</p>
+<p>In fact, <strong>any query or change toward the cluster state must be addressed to the kubeAPIserver</strong>.</p>
+<p><strong>etcd</strong> is the clusters database. Its job is to <strong>reliably store the state of the cluster</strong>. This includes all of the <strong>cluster configuration data</strong> and more dynamic information, such as what nodes are part of the cluster, what pods should be running and where they should be running. <strong>You'll never interact directly with etcd</strong>. I<strong>nstead, kube-APIserver interacts with the database on behalf of the rest of the system</strong>.</p>
+<p><strong>kube-scheduler</strong> is responsible <strong>for scheduling pods onto nodes</strong>. To do that, it evaluates the requirements of each individual pod and selecting which node is most suitable. But it doesn't do the work of actually launching the pods on the nodes. Instead, whenever it discovers a pod object that doesn't yet have an assignment to a node, it chooses a node and simply writes the name of that node into the pod object.</p>
+<p>Another component of the system is responsible, then for launching the pods, and you'll see it very soon.</p>
+<p>But how does kube-scheduleer decide where to run the pod? It knows the <strong>state of all of the nodes</strong>, and it will <strong>obey constraints that you define</strong> on where a pod may run. Based on hardware, software and policy. For example, you might specify a certain pod is only allowed to run on nodes with a certain amount of memory. You can also define <strong>affinity specifications</strong>, which calls groups of pods to prefer running on the same node. Or <strong>anti affinity specifications</strong>, which ensure that pods do not run on the same node. You will learn more about some of these tools in later modules.</p>
+<p><strong>kube-controller-manager</strong> has a broader job. It <strong>continuously monitors</strong> the <strong>state of the cluster</strong> through <strong>kube-APIserver</strong>. Whenever the current state of the cluster doesn't match the desired state, <strong>kube-controller-manager</strong> will attempt to make changes <strong>to achieve the desired state</strong>. It's called the controller manager because many kubernetes objects are managed by <strong>loops of code called controllers</strong>. These loops of code handle the process of remediation. <strong>Controllers</strong> will be very useful for you. To be specific, you'll learn to use certain kinds of kubernetes controllers to manage workloads. For example, remember our problem of keeping three engine x pods always running.</p>
+<p>We can gather them together into a <strong>controller object</strong> called a <strong>deployment</strong>. That not only keeps them running, but also let's us scale them and bring them together under the front end. We'll meet deployments later in this module.</p>
+<p>Other kinds of controllers have system level responsibilities. For example, <strong>node controller</strong>'s job is <strong>to monitor and respond when a node is offline.</strong></p>
+<p><strong>kube-cloud-manager</strong> manages controllers that interact with the underlying cloud providers. For example, if you manually launch a kubernetes cluster on Google Compute Engine, <strong>kube-cloud-manager</strong> would be responsible for bringing in Google cloud features like <strong>load balancers</strong> and <strong>storage volumes</strong> when you needed them.</p>
+<p>Each node runs a small family of control plane components too. For example, each node runs a kubelet. You can think of a <strong>Kubelet</strong> as <strong>kubernetes agent on each node</strong>. When the <strong>kube-APIserver</strong> wants to start a pod on a node, it <strong>connects</strong> to that <strong>node's</strong> <strong>kubelet</strong>. Kubelet uses the <strong>container runtime</strong> to start the pod and monitors its life cycle. Including <strong>readiness</strong> and <strong>liveliness</strong> probes and <strong>reports back to kube-APIserver</strong>. Do you remember our use of the term <strong>container runtime</strong> in the previous module? This <strong>is the software that knows how to launch a container from a container image.</strong></p>
+<p><code></code><img alt="Diagram Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.004.png" /></p>
+<p>The world of kubernetes offers several choices for container runtimes. But the Linux distribution that GKE uses for its node launches containers using <strong>Container D. &gt;&gt; The runtime component of Docker</strong>.</p>
+<p><strong>Kube-proxy</strong>’s job is to <strong>maintain the network connectivity</strong> among the pods in a cluster. In <strong>open source kubernetes</strong>, it does so using the <strong>firewall capabilities of IP tables</strong>, which are <strong>built into the Linux kernel</strong>. Later, in the specialization, we will learn how GKE handles part networking.</p>
+<h2 id="kubernetes-object-management"><strong>Kubernetes Object Management</strong></h2>
+<p>All <strong>Kubernetes objects</strong> are <strong>identified</strong> by a <strong>unique name</strong> and a <strong>unique identifier.</strong></p>
+<p>Let's return once again to our example in which we want three nginx web servers running all the time. Well, the simplest way would be to declare three Pod objects and specify their state: for each, a Pod must be created and an nginx container image must be used. Let's see how we declare this.</p>
+<p><strong>You define the objects</strong> you want Kubernetes to create and maintain with <strong>manifest files</strong>. These are ordinary text files. You may write them in <strong>YAML or JSON format</strong>. YAML is more human-readable and less tedious to edit, and we will use it throughout this specialization. ![Table</p>
+<p>Description automatically generated with low confidence](./images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.005.png)This YAML file defines a desired state for a Pod: its name and a specific container image for it to run.</p>
+<p>Your manifest files have certain required fields.</p>
+<p><strong>'apiVersion'</strong> describes which Kubernetes Api version is used to create the object. The Kubernetes protocol is versioned so as to help maintain backwards compatibility.</p>
+<p><strong>'Kind'</strong> defines the <strong>object</strong> you want, in this case a Pod,</p>
+<p>and <strong>'metadata'</strong> helps identify the object using <strong>name</strong>, <strong>unique</strong> <strong>ID</strong>, and an optional <strong>namespace</strong>. You can define <strong>several related objects in the same YAML file</strong> and it is a best practice to do so. One file is often easier to manage than several. Another even more important tip: You should save your YAML files in version-controlled repositories. This practice makes it easier to track and manage changes and to back-out those changes when necessary. It's also a big help when you need to recreate or restore a cluster. Many GCP customers use Cloud Source Repositories for this purpose, because that service lets them control the permissions of those files in the same way as their other GCP resources.</p>
+<p>When you create a Kubernetes object, you name it with a string. <strong>Names must be unique.</strong> <img alt="Diagram Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.006.png" /><strong>Only</strong> <strong>one object of a particular kind can have a particular name at the same time in a Kubernetes namespace</strong>. However, if an object is deleted, its name can be reused. Alphanumeric characters, hyphens, and periods are allowed in the names, with a maximum character length of 253.</p>
+<p>Each object generated throughout the life of a cluster has a unique ID generated by Kubernetes. This means that no two objects will have the same <strong>UID</strong> throughout the life of a cluster.</p>
+<p><strong>'Labels'</strong> are <strong>key-value pairs</strong> with which you <strong>tag</strong> your objects during or after their creation. <img alt="Text Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.007.png" />Labels help you <strong>identify and organize objects</strong> and subsets of objects. For example, you could create a label called 'app' and give as its value the application of which this object is a part.</p>
+<p>In this simple example, a Deployment object is labeled with three different key values: its application, its environment, and which stack it forms a part of. Various contexts offer ways to select Kubernetes resources by their labels. In this specialization, you will spend plenty of time with the kubectl command. Here's an example of using it to show all the Pods that contain a label called 'app' with a value of 'nginx'. Label selectors are very expressive. You can ask for all the resources that have a certain value for a label, all those that don't have a certain value, or even all those that have a value in a set you supply.</p>
+<p>So one way to bring three nginx web servers into being would be to declare three Pod objects, each with its own section of YAML. Kubernetes' default scheduling algorithm prefers to <strong>spread the workload evenly across the nodes available</strong> to it. So we'd get a situation like this one. <img alt="Diagram, timeline Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.008.png" />Looks good, doesn't it? Maybe not. Suppose I want 200 more nginx instances. Managing 200 more sections of YAML sounds very inconvenient. Here's another problem. <strong>Pods don't heal or repair themselves</strong>, and they're not meant to run forever. <img alt="Diagram Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.009.png" />They are designed to be <strong>ephemeral</strong> and <strong>disposable</strong>. For these reasons, there are better ways to manage what you run in Kubernetes than specifying individual Pods. You need a setup like this to maintain an application's high availability along with horizontal scaling. So, how do you tell Kubernetes to maintain the desired state of three nginx containers?</p>
+<p>We can instead <strong>declare a controller object</strong> whose job is <strong>to manage the state of the Pods</strong>. <img alt="Table Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.010.png" />Some examples of these objects: <strong>Deployments, StatefulSets, DaemonSets</strong>, and <strong>Jobs</strong>. We'll meet all of these in our specialization.</p>
+<p><strong>Deployments</strong> are a great choice for long-lived software components like web servers, especially when we want to manage them as a group. In our example, when <strong>kube-scheduler</strong> schedules Pods for a Deployment, it notifies the <strong>kube-APIserver</strong>.</p>
+<p><code></code><img alt="Graphical user interface Description automatically generated with low confidence" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.011.png" /></p>
+<p>These changes are constantly monitored by <strong>controllers</strong>, especially by the <strong>Deployment controller</strong>. The Deployment controller will monitor and maintain three nginx Pods. If one of those Pods fails, the Deployment controller will recognize the difference between the current state and the desired state, and will try to fix it by launching a new Pod. Instead of using multiple YAML manifests or files for each Pod, you used a single Deployment YAML to launch three replicas of the same container. <strong>A Deployment ensures that a defined set of Pods is running at any given time</strong>. <img alt="Table Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.012.png" /><strong>Within</strong> its object <strong>spec</strong>, you specify how many replica Pods you want, how Pods should run, which containers should run within these Pods, and which Volumes should be mounted. Based on these templates, controllers maintain the Pod's desired state within a cluster. Deployments can also do a lot more than this, which you will see later in the course.</p>
+<p>When Kubernetes schedules a Pod, it’s important that the containers have enough resources to actually run. If you schedule a large application on a node with limited resources, it is possible for the node to run out of memory or CPU resources and for things to stop working!</p>
+<p>It’s also possible for applications to take up more resources than they should. This could be caused by a team spinning up more replicas than they need, possibly to artificially decrease latency, or to a bad configuration change that causes a program to go out of control and use 100% of the available CPU. Regardless of whether the issue is caused by a bad developer, bad code, or bad luck, <strong>what’s important is that you are in control.</strong></p>
+<p>When you specify a Pod, you can optionally specify how much of each resource a container needs. The most common resources to specify are CPU and memory (RAM); however, there are others. Let's take a look at the mechanisms Kubernetes uses to control these resources.</p>
+<p>So how do you keep everybody's work on your cluster tidy and organized? <strong>Kubernetes allows you to abstract a single physical cluster into multiple clusters known as 'namespaces'.</strong> <strong>Namespaces</strong> provide scope for naming resources such as Pods, Deployments, and controllers.</p>
+<p>As you can see in this example, there are three namespaces in this cluster: Test, Stage, and Prod. Remember that you cannot have duplicate object names in the same namespace. You can create three Pods with the same name, nginx in this case, but only if they don't share the same namespace.</p>
+<p><code></code><img alt="A picture containing timeline Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.013.png" /></p>
+<p>If you attempt to create another Pod with the same name 'nginx Pod' in namespace 'test', you won't be allowed. Object names need only be unique within a namespace, not across all namespaces.</p>
+<p><strong>Namespaces</strong> also let you implement <strong>resource quotas</strong> across the cluster. These quotas define limits for resource consumption within a namespace. They're not the same as your GCP quotas, which we discussed in an earlier module. These quotas apply specifically to the Kubernetes cluster they're defined on. You're not required to use namespaces for your day-to-day management. You can also use <strong>labels</strong>. Still, namespaces are a valuable tool. Suppose you want to <strong>spin up a copy of a deployment</strong> as a <strong>quick test</strong>. Doing so in a <strong>new namespace makes it easy and free of name collisions</strong>.</p>
+<p>There are <strong>three initial namespaces</strong> in a cluster. The first is a <strong>default namespace</strong>, for objects with no other namespace defined. Your workload resources will use this namespace by default.</p>
+<p>Then there is the <strong>kube-system</strong> <strong>namespace</strong> for objects created by the Kubernetes system itself. We'll see more of the object kinds in this diagram elsewhere in this specialization. When you use the <strong>kubectl</strong> command, <strong>by default</strong>, items in the <strong>kube-system namespace are excluded</strong>, but <strong>you can choose to view its contents explicitly</strong>.</p>
+<p>The third namespace is <strong>the kube-public namespace</strong> for objects that are publicly readable to all users. <strong>kube-public is a tool for disseminating information</strong> to everything running in a cluster. You're not required to use it, but it can come in handy, especially when everything running in a cluster is related to the same goal and needs information in common.</p>
+<p><img alt="A picture containing table Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.014.png" /></p>
+<p><strong>You can apply a resource to a namespace when creating it using a command-line namespace flag</strong>. <strong>Or, you can specify a namespace in the YAML file for the resource</strong>. <strong>Whenever possible, apply namespaces at the command line level.</strong></p>
+<p><img alt="Graphical user interface, text, application Description automatically generated" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.015.png" /></p>
+<p>This practice makes your YAML files more flexible. For example, some day you might want to create two completely independent instances of one of your deployments, each in its own namespace. This is difficult if you have chosen to embed namespace names in your YAML files.</p>
+<p><strong>A note about Deployments and ReplicaSets</strong></p>
+<p>The example nginx Deployment you saw in the previous video was simplified. In practice, you would launch a Deployment object to manage your desired three nginx Pods, just as the video described. Note, though, that the Deployment object would create a ReplicaSet object to manage the Pods. The diagram in the video leaves out this detail. You will work with <strong>Deployment objects directly much more often</strong> than ReplicaSet objects. But it's still helpful to know about ReplicaSets, so that you can better understand how Deployments work. For example, one capability of a Deployment is to allow a rolling upgrade of the Pods it manages. To perform the upgrade, the Deployment object will create a second ReplicaSet object, and then increase the number of (upgraded) Pods in the second ReplicaSet while it decreases the number in the first ReplicaSet.</p>
+<p><strong>A note about Services</strong></p>
+<p>Services provide <strong>load-balanced access</strong> to specified Pods. There are three primary types of Services:</p>
+<p>● <strong>ClusterIP</strong>: Exposes the service on an IP address that is <em>only accessible from within this cluster</em>. This is the default type.</p>
+<p>● <strong>NodePort</strong>: Exposes the service on the IP address of each node in the cluster, at a specific port number.</p>
+<p>● <strong>LoadBalancer</strong>: Exposes the service <strong>externally</strong>, using a load balancing service provided by a cloud provider.</p>
+<p>In Google Kubernetes Engine, LoadBalancers give you access to a regional Network Load Balancing configuration by default. To get access to a global HTTP(S) Load Balancing configuration, you can use an <strong>Ingress</strong> object.</p>
+<p>You will learn more about Services and Ingress objects in a later module in this specialization.</p>
+<p><strong>Controller objects to know about</strong></p>
+<p>This reading explains the relationship among several Kubernetes controller objects:</p>
+<p>● ReplicaSets</p>
+<p>● Deployments</p>
+<p>● Replication Controllers</p>
+<p>● StatefulSets</p>
+<p>● DaemonSets</p>
+<p>● Jobs</p>
+<p>A <strong>ReplicaSet</strong> <strong>controller</strong> ensures that a population of Pods, all identical to one another, arevrunning at the same time.</p>
+<p>Deployments let you do declarative updates to ReplicaSets and Pods.</p>
+<p>In fact, Deployments manage their own ReplicaSets to achieve the declarative goals you prescribe, so you will <strong>most commonly work with Deployment objects</strong>.</p>
+<p>Deployments let you create, update, roll back, and scale Pods, using ReplicaSets as needed todo so. For example, when you perform a rolling upgrade of a Deployment, the Deployment object creates a second ReplicaSet, and then increases the number of Pods in the new ReplicaSet as it decreases the number of Pods in its original ReplicaSet.</p>
+<p><strong>Replication Controllers</strong> perform a similar role to the combination of ReplicaSets and Deployments, but their use is no longer recommended. Because Deployments provide a helpful "front end" to ReplicaSets, this training course chiefly focuses on Deployments.</p>
+<p>If you need to deploy applications that maintain local state, <strong>StatefulSet</strong> is a better option. A StatefulSet is similar to a Deployment in that the Pods use the same container spec. The Pods created through Deployment are not given persistent identities, however; by contrast, <strong>Pods created using StatefulSet have unique persistent identities with stable network identity and persistent disk storage.</strong></p>
+<p>If you need <strong>to run certain Pods on all the nodes within the cluster or on a selection of nodes, use DaemonSet</strong>. DaemonSet ensures that a specific Pod is always running on all or some subset of the nodes. If new nodes are added, DaemonSet will automatically set up Pods in those nodes with the required specification. The word "daemon" is a computer science term meaning a <strong>non-interactive process</strong> that provides useful services to other processes. A Kubernetes cluster might use a DaemonSet to ensure that a logging agent like fluentd is running on all nodes in the cluster.</p>
+<p>The <strong>Job</strong> controller creates one or more Pods required to run a task. When the task is completed, Job will then terminate all those Pods. A related controller is <strong>CronJob</strong>, which runs Pods on a time-based schedule.</p>
+<p>Later modules in this specialization will cover these controllers in more depth.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 26, 2023</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 26, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023, EK
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy", "navigation.footer", "toc.follow"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      
+    
+  </body>
+</html>
