@@ -551,8 +551,7 @@
 </code></pre>
 <p>• Traditional feature of classes</p>
 <h3 id="structs-with-methods"><strong>Structs with Methods</strong></h3>
-<p>• <strong>Structs and methods</strong> together allow</p>
-<p>arbitrary data and functions to be composed</p>
+<p>• <strong>Structs and methods</strong> together allow arbitrary data and functions to be composed</p>
 <pre><code>func (p Point) **DistToOrig()** {
     t := math.Pow(p.x, 2) +
     math.Pow(p.y, 2)
@@ -570,9 +569,10 @@ func main() {
 <p>• Example: Point struct, Scale() method</p>
 <p>• Scale() should multiply x and y coordinates by a constant</p>
 <p>• Don’t trust this to the programmer</p>
-<p>– Might scale one coordinate but not the other</p>
-<p>– Coordinates could become inconsistent</p>
-<p>– Need to <strong>hide x and y coordinates</strong></p>
+<pre><code>- Might scale one coordinate but not the other
+- Coordinates could become inconsistent
+- Need to **hide x and y coordinates**
+</code></pre>
 <h3 id="hiding-in-a-package"><strong>Hiding in a Package</strong></h3>
 <p>• Go can only hide data/methods in a package</p>
 <p>• Variables/functions are only exported if their names start with a <strong>capital letter</strong></p>
