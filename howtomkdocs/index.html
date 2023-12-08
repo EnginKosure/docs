@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../go/">
+        <link rel="prev" href="../kafka/">
       
-      
-        <link rel="next" href="../howtomkdocs/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Kafka - Platform Documentation</title>
+        <title>How to Use MkDocs - Platform Documentation</title>
       
     
     
@@ -75,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kafka-topics" class="md-skip">
+        <a href="#my-first-blog" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kafka
+              How to Use MkDocs
             
           </span>
         </div>
@@ -376,6 +374,67 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../kafka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kafka
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog Posts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            Blog Posts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
     
   
   
@@ -391,7 +450,7 @@
           
   
   <span class="md-ellipsis">
-    Kafka
+    How to Use MkDocs
   </span>
   
 
@@ -402,7 +461,7 @@
         
   
   <span class="md-ellipsis">
-    Kafka
+    How to Use MkDocs
   </span>
   
 
@@ -424,9 +483,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#producers" class="md-nav__link">
+  <a href="#how-to-use-mkdocs-for-your-blog-site" class="md-nav__link">
     <span class="md-ellipsis">
-      Producers
+      How to use MkDocs for your Blog site
     </span>
   </a>
   
@@ -436,65 +495,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Blog Posts
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1_6">
-            <span class="md-nav__icon md-icon"></span>
-            Blog Posts
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../howtomkdocs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to Use MkDocs
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -542,9 +542,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#producers" class="md-nav__link">
+  <a href="#how-to-use-mkdocs-for-your-blog-site" class="md-nav__link">
     <span class="md-ellipsis">
-      Producers
+      How to use MkDocs for your Blog site
     </span>
   </a>
   
@@ -565,37 +565,8 @@
                   
 
 
-<h1 id="kafka-topics">Kafka Topics</h1>
-<ul>
-<li>Topics: A particular stream of data</li>
-<li>A topic is identified by its name</li>
-<li>The sequence of messages is called a <strong>data stream</strong>.</li>
-<li>
-<p>You can't query topics. Instead use Kafka Producers to send data, Kafka Consumers to read data.</p>
-</li>
-<li>
-<p>Topics are split into partitions.</p>
-</li>
-<li>Messages within each partition are ordered.</li>
-<li>
-<p>Each message within a partition gets an incremental id, called <strong>offset</strong>.</p>
-</li>
-<li>
-<p>Kafka topics are <strong>immutable</strong>.</p>
-</li>
-<li>Data is kept only for a limited time (default is <em>one week</em>, configurable)</li>
-<li>Offset only have a meaning for a specific partition. Not reused.</li>
-<li>Order is guaranteed only within a partition.</li>
-<li>Data is assigned randomly to a partition unless a key is provided.</li>
-</ul>
-<h2 id="producers">Producers</h2>
-<ul>
-<li>Producers write data to topics, which are made of partitions.</li>
-<li>Producers know which partition to write to (and which Kafka broker has it.)
-  -In case of Kafka broker failures, Producers will automatically recover.
-  -Producers can optionally send a key with the message.</li>
-<li>If key=null (not provided), data is sent round robin (part. 0, then 1, then 2, etc.)</li>
-</ul>
+<h1 id="my-first-blog">My first blog</h1>
+<h2 id="how-to-use-mkdocs-for-your-blog-site">How to use MkDocs for your Blog site</h2>
 
   <hr>
 <div class="md-source-file">
@@ -640,7 +611,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../go/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Object Orientation in Go">
+          <a href="../kafka/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Kafka">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -650,27 +621,11 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Object Orientation in Go
+                Kafka
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../howtomkdocs/" class="md-footer__link md-footer__link--next" aria-label="Next: How to Use MkDocs">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                How to Use MkDocs
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
         
       </nav>
     

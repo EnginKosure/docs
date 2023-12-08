@@ -474,6 +474,73 @@
 
               
             
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog Posts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            Blog Posts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howtomkdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Use MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -610,8 +677,7 @@
 <h2 id="kubernetes-object-management"><strong>Kubernetes Object Management</strong></h2>
 <p>All <strong>Kubernetes objects</strong> are <strong>identified</strong> by a <strong>unique name</strong> and a <strong>unique identifier.</strong></p>
 <p>Let's return once again to our example in which we want three nginx web servers running all the time. Well, the simplest way would be to declare three Pod objects and specify their state: for each, a Pod must be created and an nginx container image must be used. Let's see how we declare this.</p>
-<p><strong>You define the objects</strong> you want Kubernetes to create and maintain with <strong>manifest files</strong>. These are ordinary text files. You may write them in <strong>YAML or JSON format</strong>. YAML is more human-readable and less tedious to edit, and we will use it throughout this specialization. ![Table</p>
-<p>Description automatically generated with low confidence](./images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.005.png)This YAML file defines a desired state for a Pod: its name and a specific container image for it to run.</p>
+<p><strong>You define the objects</strong> you want Kubernetes to create and maintain with <strong>manifest files</strong>. These are ordinary text files. You may write them in <strong>YAML or JSON format</strong>. YAML is more human-readable and less tedious to edit, and we will use it throughout this specialization. <img alt="Table Description automatically generated with low confidence" src="../images/Aspose.Words.9e3d91d3-f65a-4442-99e7-3d70c6efd835.005.png" />This YAML file defines a desired state for a Pod: its name and a specific container image for it to run.</p>
 <p>Your manifest files have certain required fields.</p>
 <p><strong>'apiVersion'</strong> describes which Kubernetes Api version is used to create the object. The Kubernetes protocol is versioned so as to help maintain backwards compatibility.</p>
 <p><strong>'Kind'</strong> defines the <strong>object</strong> you want, in this case a Pod,</p>
